@@ -1,0 +1,54 @@
+@import './normalize.scss';
+@import './variables.scss';
+
+.header {
+  padding: 50px;
+}
+
+.title {
+  margin-bottom: 50px;
+}
+
+.form {
+  max-width: 310px;
+  &__item {
+    position: relative;
+    &-input {
+      width: 100%;
+      &[type='checkbox'] {
+        position: absolute;
+        opacity: 0;
+        & + label {
+          position: relative;
+          cursor: pointer;
+          padding: 0;
+        }
+        & + label:before {
+          content: '';
+          margin-right: 10px;
+          display: inline-block;
+          vertical-align: text-top;
+          width: 20px;
+          height: 20px;
+          border: 1px solid $formControlBorderColor;
+        }
+        &:checked + label:after {
+          content: '';
+          position: absolute;
+          left: 5px;
+          top: 9px;
+          background: $secondaryColor;
+          width: 2px;
+          height: 2px;
+          box-shadow: 2px 0 0 $secondaryColor, 4px 0 0 $secondaryColor, 4px -2px 0 $secondaryColor,
+            4px -4px 0 $secondaryColor, 4px -6px 0 $secondaryColor, 4px -8px 0 $secondaryColor;
+          transform: rotate(45deg);
+        }
+      }
+    }
+    &-toggle {
+      position: absolute;
+      right: 0;
+    }
+  }
+}
