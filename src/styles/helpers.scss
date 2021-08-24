@@ -1,0 +1,24 @@
+%btn {
+  border: none;
+  outline: none;
+  cursor: pointer;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+@mixin btn($bgc, $c, $pad, $min-w) {
+  padding: $pad;
+  min-width: $min-w;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: $bgc;
+  color: $c;
+}
+
+@mixin rect($br, $bc, $w, $h) {
+  width: $w;
+  height: $h;
+  border-radius: $br;
+  border-color: $bc;
+}
