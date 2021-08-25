@@ -6,10 +6,11 @@
       {
         "ignoreUrls": true,
         "code": 120
-      }
+      },
+      { "ignoreTemplateLiterals": true }
     ],
     "prefer-template": "off",
-    "indent": [1, 2],
+    "indent": [1, 2, { "SwitchCase": 1 }],
     "object-curly-spacing": 1,
     "no-multiple-empty-lines": [
       1,
@@ -22,7 +23,7 @@
     "camelcase": 1,
     "no-new-wrappers": 1,
     "no-nested-ternary": 1,
-    "no-console": 1,
+    "no-console": 0,
     "no-template-curly-in-string": 1,
     "no-self-compare": 1,
     "import/prefer-default-export": 0,
@@ -30,8 +31,7 @@
     "arrow-body-style": 1,
     "semi": [1, "always"],
     "import/no-extraneous-dependencies": ["off", { "devDependencies": false }],
-    "no-use-before-define": ["error", { "functions": false, "classes": false }],
-    "indent": ["error", 2, { "SwitchCase": 1 }]
+    "no-use-before-define": ["error", { "functions": false, "classes": false }]
   },
   "env": {
     "browser": true,

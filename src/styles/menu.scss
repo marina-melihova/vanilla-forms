@@ -1,8 +1,6 @@
 .menu {
   display: flex;
   &__btn {
-    @extend %btn;
-    @include btn($primaryColor, $secondaryTextColor, 20px 24px, 100);
     &:first-child {
       margin-right: 25px;
     }

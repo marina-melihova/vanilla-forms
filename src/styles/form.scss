@@ -1,98 +1,84 @@
 .form {
-  max-width: 310px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  &__body {
+    margin-bottom: 8px;
+    width: 310px;
+  }
   &__item {
     position: relative;
+    margin-bottom: 16px;
+    overflow: hidden;
+    font-size: 14px;
+    &-label {
+      position: absolute;
+      top: 20px;
+      left: 16px;
+      width: 100%;
+      transition: background-color 0.2s, color 0.2s, top 0.2s, bottom 0.2s, right 0.2s, left 0.2s;
+    }
     &-input {
       width: 100%;
-      &[type='checkbox'] {
+      height: 56px;
+      display: flex;
+      align-items: center;
+      padding-left: 16px;
+      border-radius: 4px;
+      border-width: 0;
+      outline: 0;
+      background: $formControlBgColor;
+      &--text {
+        padding-right: 16px;
+      }
+      &--password {
+        padding-right: 52px;
+      }
+      &:focus + label,
+      &:not(:placeholder-shown) + label {
+        top: 4px;
+        color: $helpTextColor;
+        font-size: 11px;
+      }
+    }
+    &-input--text-checkbox {
+      position: absolute;
+      z-index: -1;
+      opacity: 0;
+      & + label {
+        position: relative;
+        cursor: pointer;
+        padding: 0;
+      }
+      & + label:before {
+        content: '';
+        margin-right: 10px;
+        display: inline-block;
+        vertical-align: text-top;
+        width: 20px;
+        height: 20px;
+        border: 1px solid $formControlBorderColor;
+      }
+      &:checked + label:after {
+        content: '';
         position: absolute;
-        opacity: 0;
-        & + label {
-          position: relative;
-          cursor: pointer;
-          padding: 0;
-        }
-        & + label:before {
-          content: '';
-          margin-right: 10px;
-          display: inline-block;
-          vertical-align: text-top;
-          width: 20px;
-          height: 20px;
-          border: 1px solid $formControlBorderColor;
-        }
-        &:checked + label:after {
-          content: '';
-          position: absolute;
-          left: 5px;
-          top: 9px;
-          background: $secondaryColor;
-          width: 2px;
-          height: 2px;
-          box-shadow: 2px 0 0 $secondaryColor, 4px 0 0 $secondaryColor, 4px -2px 0 $secondaryColor,
-            4px -4px 0 $secondaryColor, 4px -6px 0 $secondaryColor, 4px -8px 0 $secondaryColor;
-          transform: rotate(45deg);
-        }
+        left: 5px;
+        top: 9px;
+        background: $secondaryColor;
+        width: 2px;
+        height: 2px;
+        box-shadow: 2px 0 0 $secondaryColor, 4px 0 0 $secondaryColor, 4px -2px 0 $secondaryColor,
+          4px -4px 0 $secondaryColor, 4px -6px 0 $secondaryColor, 4px -8px 0 $secondaryColor;
+        transform: rotate(45deg);
       }
     }
     &-toggle {
       position: absolute;
-      right: 0;
+      top: 16px;
+      right: 16px;
+      svg {
+        fill: $helpIconColor;
+      }
     }
-  }
-}
-
-.form {
-  max-width: 400px;
-  > div {
-    position: relative;
-    overflow: hidden;
-  }
-  &__input {
-    width: 100%;
-    border: 2px solid gray;
-    background: $formControlBgColor;
-    position: relative;
-    top: 0;
-    left: 0;
-    z-index: 1;
-    padding: 8px 12px;
-    outline: 0;
-    &:valid {
-      background: white;
-    }
-    &:focus {
-      border-color: #f06d06;
-    }
-    &:focus + label,
-    &:not(:placeholder-shown) + label {
-      background: #f06d06;
-      color: white;
-      font-size: 70%;
-      padding: 1px 6px;
-      z-index: 2;
-      text-transform: uppercase;
-    }
-  }
-  &__label {
-    transition: background-color 0.2s, color 0.2s, top 0.2s, bottom 0.2s, right 0.2s, left 0.2s;
-    position: absolute;
-    color: #999;
-    padding: 7px 6px;
-  }
-}
-
-form {
-  input {
-    padding: 12px;
-    &:focus,
-    &:not(:placeholder-shown) {
-      padding: 20px 6px 4px;
-    }
-  }
-  label {
-    top: 0;
-    left: 0;
-    width: 100%;
   }
 }

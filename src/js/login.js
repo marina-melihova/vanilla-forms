@@ -1,54 +1,55 @@
 import modal from './modal';
+import sprite from '../images/sprite.svg';
 
 // const urlReg = 'https://api.investnix.com/v1/user/signup';
-// const urlLogin = 'https://api.investnix.com/v1/user/login';
-// const bearer_token = 'Kjdijoij{oq123!kdlsOp';
-// const bearer = 'Bearer ' + bearer_token;
+const urlLogin = 'https://api.investnix.com/v1/user/login';
+const bearerToken = 'Kjdijoij{oq123!kdlsOp';
+const bearer = 'Bearer ' + bearerToken;
 
-const loginMarkUp = function () {
-  return `
-      <h4>Login</h4>
-      <form name="login" class="form">
-        <div>
-          <label for="email" class="form__label">Email</label>
-          <input type="email" name="email" class="authFormEmail" required placeholder=" " />
-          <div class="helper-text-div"></div>
-        </div>
-        <div>
-          <label for="password" class="form__label">Password</label>
-          <input type="password" name="password" autocomplete="on" class="authFormPassword" required placeholder=" " />
-          <div class="helper-text-div"></div>
-        </div>
-        <button type="submit" class="btn__sign--in" data-signin="sign">Login</button>
-      </form>
+let isHidden = true;
+const eyeMarkup = (isOpen) => `
+    <svg class="form__item-icon" width="24px" height="24px">
+      <use href="${sprite}#${isOpen ? 'eye' : 'eye_close'}"></use>
+    </svg>
   `;
-};
 
-const onLogin = (event) => {
-  event.preventDefault();
-  const form = event.target;
+const loginMarkUp = () => `
+  <h4 class="modal__title">Login</h4>
+  <form name="login" class="form">
+    <div class="form__body">
+      <div class="form__item">
+        <input type="email" id="email" name="email" class="form__item-input form__item-input--text" placeholder=" " />
+        <label for="email" class="form__item-label">Email</label>
+        <div class="helper-text-div"></div>
+      </div>
+      <div class="form__item">
+        <div class="form__item-toggle">
+          ${eyeMarkup(isHidden)}
+        </div>
+        <input type="password" id="password" name="password" class="form__item-input form__item-input--password" placeholder=" " />
+        <label for="password" class="form__item-label">Password</label>
+        <div class="helper-text-div"></div>
+      </div>
+    </div>
+    <button type="submit" class="form__btn btn">Login</button>
+  </form>
+`;
+
+const onLogin = async (e) => {
+  e.preventDefault();
+  const form = e.target;
   const formData = new FormData(form);
-  const data = {};
-  formData.forEach((value, key) => {
-    data[key] = value;
-  });
-  console.log(data);
-  /*
-  const testData = new FormData();
-  testData.append('email', 'user@test.me');
-  testData.append('password', 'qweasd123');
-  fetch(urlLogin, {
-    method: 'POST',
-    headers: { Authentication: bearer },
-    body: testData,
-  })
-    .then((response) => {
-      console.log(response);
-      return response.json();
-    })
-    .then((response) => console.log('Success:', JSON.stringify(response)))
-    .catch((error) => console.error('Error:', error));
-    */
+  try {
+    const response = await fetch(urlLogin, {
+      method: 'POST',
+      headers: { Authentication: bearer },
+      body: formData,
+    });
+    const info = await response.json();
+    console.log('Success:', JSON.stringify(info));
+  } catch (error) {
+    console.log('Error:', error);
+  }
 };
 
 const listeners = (closeModal) => {
@@ -56,10 +57,22 @@ const listeners = (closeModal) => {
   formRef.addEventListener('submit', closeModal);
 };
 
+const onToggle = (e) => {
+  const formItem = e.target.closest('.form__item');
+  const inputRef = formItem.querySelector('input');
+  const toggleRef = formItem.querySelector('.form__item-toggle');
+  isHidden = !isHidden;
+  inputRef.type = isHidden ? 'password' : 'text';
+  toggleRef.innerHTML = eyeMarkup(isHidden);
+};
+
 const showLogin = () => {
   modal(loginMarkUp, listeners);
   const formRef = document.querySelector('[name="login"]');
+  const toggleRef = document.querySelector('.form__item-toggle');
+
   formRef.addEventListener('submit', onLogin);
+  toggleRef.addEventListener('click', onToggle);
 };
 
 export default showLogin;

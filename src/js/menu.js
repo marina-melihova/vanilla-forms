@@ -4,8 +4,8 @@ import showReg from './reg';
 const menuMarkup = function () {
   return `
     <div class="menu">
-      <button class="menu__btn" data-action="reg">Register</button>
-      <button class="menu__btn" data-action="login">Login</button>
+      <button class="menu__btn btn" data-action="reg">Register</button>
+      <button class="menu__btn btn" data-action="login">Login</button>
     </div>
   `;
 };

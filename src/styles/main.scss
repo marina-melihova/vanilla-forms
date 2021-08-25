@@ -14,3 +14,8 @@
 .title {
   margin-bottom: 50px;
 }
+
+.btn {
+  @extend %btn;
+  @include btn($primaryColor, $secondaryTextColor, 20px 24px, 100);
+}
