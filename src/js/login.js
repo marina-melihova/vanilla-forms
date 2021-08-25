@@ -1,7 +1,6 @@
 import modal from './modal';
 import sprite from '../images/sprite.svg';
 
-// const urlReg = 'https://api.investnix.com/v1/user/signup';
 const urlLogin = 'https://api.investnix.com/v1/user/login';
 const bearerToken = 'Kjdijoij{oq123!kdlsOp';
 const bearer = 'Bearer ' + bearerToken;
