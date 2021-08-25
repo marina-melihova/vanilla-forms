@@ -1,0 +1,50 @@
+.btn-close {
+  @extend %btn;
+  svg {
+    fill: $formControlColor;
+  }
+}
+.modal {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity $animationDuration $timingFn;
+  &.is-open {
+    opacity: 1;
+    pointer-events: initial;
+  }
+  &__overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: $modalBgColor;
+  }
+  &__content {
+    position: relative;
+    padding: 18px 46px 32px;
+    border-radius: 8px;
+    background-color: $mainBgColor;
+    max-height: 90vh;
+    overflow-y: auto;
+    z-index: 10;
+  }
+  &__title {
+    margin-bottom: 44px;
+    font-size: 23px;
+    text-align: center;
+  }
+  .btn-close {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+  }
+}

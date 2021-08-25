@@ -1,0 +1,8 @@
+.menu {
+  display: flex;
+  &__btn {
+    &:first-child {
+      margin-right: 25px;
+    }
+  }
+}
